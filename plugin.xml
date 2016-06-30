@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="schonmann-bgtracker-plugin"
+    version="0.2.11">
+    <name>Cordova Background Tracker Plugin</name>
+    <description>GPS tracking plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,android,tracker,gps</keywords>
+    <issue></issue>
+
+    <js-module src="www/bgtracker.js" name="Tracker">
+        <clobbers target="BackgroundTracker" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="BackgroundTrackerPlugin">
+                <param name="android-package" value="schonmann.bgtracker.BackgroundTrackerPlugin"/>
+            </feature>
+        </config-file>
+        
+         <config-file target="AndroidManifest.xml" parent="/*">
+             <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        </config-file>
+
+        <source-file src="src/android/GpsTrackService.java" target-dir="src/schonmann/bgtracker/"/>
+        <source-file src="src/android/BackgroundTrackerPlugin.java" target-dir="src/schonmann/bgtracker/"/>
+    </platform>
+
+</plugin>
