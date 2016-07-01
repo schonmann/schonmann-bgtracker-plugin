@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by antonio.alves on 29/06/2016.
  */
@@ -19,14 +22,17 @@ public class GpsTrackService extends Service{
     private static final String TAG = "GpsTrackService";
     private Location bestLocation = null;
 
-    //Space and time intervals.
-    private static final float SPACE_INTERVAL = 10;
-    private static final int TIME_INTERVAL = 1000 * 60 * 2; //Two minutes.
+    //Space and time recording intervals.
+
+    private static final float SPACE_INTERVAL = 0; //Space in meters.
+    private static final int TIME_INTERVAL = 2000; //Time in millis
 
     public LocationManager locationManager;
     public MyLocationListener listener;
 
-    private List<DisplacementTag> currentDisplacements;
+    //Current target contexts.
+
+    List<TrackTag> currentTrackingContexts;
 
     public GpsTrackService(){
     }
@@ -34,41 +40,41 @@ public class GpsTrackService extends Service{
     @Override
     public void onCreate(){
         super.onCreate();
-        Log.d(TAG, "onCreate()!");
     }
 
     private boolean isStartTrackingIntent(Intent intent){
         return intent != null && intent.getAction() != null && intent.getAction().equals("startTracking");
     }
 
-    private List<DisplacementTag> readStartedDisplacements(){
-        List<DisplacementTag> displacements = new ArrayList<>();
+    private List<TrackTag> readPersistedTracks(){
+        List<TrackTag> persistedTracks = new ArrayList<TrackTag>();
 
-        // Read and parse displacements from cached file.
-
-        return displacements;
+        return persistedTracks;
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(Intent intent, int flags, int startId){
 
-        currentDisplacements = readStartedDisplacements();
+        //Read current tracking contexts stored in device filesystem.
 
-        Log.d(TAG, "OS NUMBER => " + serviceOrderNumber);
-        Log.d(TAG, "TRACK ID => " + trackId);
+        currentTrackingContexts = readPersistedTracks();
+
+        //If no contexts, stop tracking.
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         listener = new MyLocationListener();
 
         try {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 4000, 0, listener);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 4000, 0, listener);
-        } catch (SecurityException se) {
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, TIME_INTERVAL, SPACE_INTERVAL, listener);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, TIME_INTERVAL, SPACE_INTERVAL, listener);
+        }catch(SecurityException se){
             Log.d(TAG, "Security exception.");
             stopSelf();
         }
 
-        Log.d(TAG, "Service started!");
+        if(currentTrackingContexts.isEmpty()){
+            stopSelf();
+        }
 
         return START_STICKY;
     }
@@ -82,14 +88,12 @@ public class GpsTrackService extends Service{
     public void onDestroy() {
         // handler.removeCallbacks(sendUpdatesToUI);
         super.onDestroy();
-        Log.d(TAG, "onDestroy()!");
         try{
             locationManager.removeUpdates(listener);
-        }catch(SecurityException se){
+        }catch(SecurityException se) {
             Log.e(TAG, se.toString());
         }
-        Log.d(TAG, serviceOrderNumber + ": tracking completed! Saving to local storage...");
-        Log.d(TAG, "File created: '/track/"+serviceOrderNumber+"/"+trackId);
+        Log.d(TAG, "No more tracking contexts. Stopping service...");
     }
 
     public boolean isBetterLocation(Location newLocation){
@@ -112,6 +116,15 @@ public class GpsTrackService extends Service{
         return false;
     }
 
+    private void persistByTag(LocationDTO location, TrackTag tag){
+    }
+
+    private void persistLocation(LocationDTO location){
+        for(int i = 0; i < currentTrackingContexts.size(); i++){
+            persistByTag(location, currentTrackingContexts.get(i));
+        }
+    }
+
     public class MyLocationListener implements LocationListener
     {
         public void onLocationChanged(final Location location)
@@ -119,17 +132,18 @@ public class GpsTrackService extends Service{
             Log.d(TAG, "New location! " + location.getLatitude() + " " + location.getLongitude());
             if(isBetterLocation(location)){
                 bestLocation = location;
+                LocationDTO locationDTO = new LocationDTO(location);
+                //persistLocation(locationDTO);
             }
         }
-        public void onProviderDisabled(String provider)
-        {
+        @Override
+        public void onProviderDisabled(String provider) {
         }
-        public void onProviderEnabled(String provider)
-        {
+        @Override
+        public void onProviderEnabled(String provider) {
         }
-        public void onStatusChanged(String provider, int status, Bundle extras)
-        {
-
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
         }
     }
 }

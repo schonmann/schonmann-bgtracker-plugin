@@ -23,10 +23,14 @@
         
          <config-file target="AndroidManifest.xml" parent="/*">
              <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+             <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         </config-file>
 
-        <source-file src="src/android/GpsTrackService.java" target-dir="src/schonmann/bgtracker/"/>
-        <source-file src="src/android/BackgroundTrackerPlugin.java" target-dir="src/schonmann/bgtracker/"/>
+        <source-file src="src/android/GpsTrackService.java" target-dir="src/schonmann/bgtracker/" />
+        <source-file src="src/android/BackgroundTrackerPlugin.java" target-dir="src/schonmann/bgtracker/" />
+        <soruce-file src="src/android/LocationDTO.java" target-dir="src/schonmann/bgtracker/" />
+        <soruce-file src="src/android/TrackTag.java" target-dir="src/schonmann/bgtracker/" />
     </platform>
 
 </plugin>

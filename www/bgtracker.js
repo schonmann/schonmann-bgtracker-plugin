@@ -4,21 +4,55 @@ function BackgroundTracker() {
 	console.log("bgtracker.js: is created");
 }
 
-BackgroundTracker.prototype.startTracking = function(osNumber, trackId){
-	exec(function(winParam) {},
-			function(error) {
-				console.log("'GpsTrackService.class' currently running. Already tracking a displacement!");
-			},
-			"BackgroundTrackerPlugin",
-            "startTracking",
-			[osNumber, trackId]);
+function validateStartParams(params){
+	return true;
+}
+
+function validateStopParams(params){
+	return true;
+}
+
+BackgroundTracker.prototype.startTracking = function(parameters, callback, fallback){
+	
+	var service = "BackgroundTrackerPlugin";
+	var action = "startTracking";
+	var argArray = [parameters];
+
+	function win(winParam){
+		if(typeof(callback) === "function"){
+			callback();
+		}
+	}
+
+	function fail(error){
+		if(typeof(fallback) === "function"){
+			fallback();
+		}
+	}
+	
+	if(!validateStartParams(argArray)) return false;
+	exec(win, fail, service, action, argArray);
 };
-BackgroundTracker.prototype.stopTracking = function(){
-	exec(function(winParam) {},
-			function(error) {},
-			"BackgroundTrackerPlugin",
-            "stopTracking",
-			[]);
+
+BackgroundTracker.prototype.stopTracking = function(trackId, callback, fallback){
+	var service = "BackgroundTrackerPlugin";
+	var action = "stopTracking";
+	var argArray = [trackId];
+
+	function win(winParam){
+		if(typeof(callback) === "function"){
+			callback();
+		}
+	}
+
+	function fail(error){
+		if(typeof(fallback) === "function"){
+			fallback();
+		}
+	}
+	
+	if(!validateStopParams(argArray)) return false;
+	exec(win, fail, service, action, argArray);
 };
 
 var tracker = new BackgroundTracker();
