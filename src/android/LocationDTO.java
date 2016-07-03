@@ -3,7 +3,7 @@ package schonmann.bgtracker;
 import android.location.Location;
 
 /**
- * Created by antonio.alves on 01/07/2016.
+ * Created by Antonio Schönmann on 01/07/2016.
  */
 public class LocationDTO {
 
@@ -11,6 +11,10 @@ public class LocationDTO {
     private double longitude;
     private double timestamp;
     private float speed;
+
+    public String toString(){
+        return latitude + " " + longitude + " " + timestamp + " " + speed;
+    }
 
     public LocationDTO(Location location){
         latitude = location.getLatitude();

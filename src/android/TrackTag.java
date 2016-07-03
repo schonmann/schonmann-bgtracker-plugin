@@ -1,14 +1,19 @@
 package schonmann.bgtracker;
 
 /**
- * Created by antonio.alves on 01/07/2016.
+ * Created by Antonio Schönmann on 01/07/2016.
  */
+
 public class TrackTag {
     private String track_id;
-    private int interval_distance;
-    private int interval_time;
+    private Integer interval_distance;
+    private Integer interval_time;
 
-    public TrackTag(String track_id, int interval_distance, int interval_time){
+    public String toString(){
+        return track_id;
+    }
+
+    public TrackTag(String track_id, Integer interval_distance, Integer interval_time){
         this.track_id = track_id;
         this.interval_distance = interval_distance;
         this.interval_time = interval_time;
@@ -26,19 +31,19 @@ public class TrackTag {
         this.track_id = track_id;
     }
 
-    public int getIntervalDistance() {
+    public Integer getIntervalDistance() {
         return interval_distance;
     }
 
-    public void setIntervalDistance(int interval_distance) {
+    public void setIntervalDistance(Integer interval_distance) {
         this.interval_distance = interval_distance;
     }
 
-    public int getIntervalTime() {
+    public Integer getIntervalTime() {
         return interval_time;
     }
 
-    public void setIntervalTime(int interval_time) {
+    public void setIntervalTime(Integer interval_time) {
         this.interval_time = interval_time;
     }
 }
