@@ -6,7 +6,7 @@ Contributors
 
 Background Tracking plugin for Cordova
 ==========================
-This plugin will open a background service to track gps positions even if application is closed.
+This plugin will start a background service to track gps positions even if application is closed.
 
 ----------------
 
