@@ -137,9 +137,9 @@ public class GpsTrackService extends Service implements LocationListener{
 
 		//if(isBetterLocation(location, bestLocation)){
 			bestLocation = location;
-			UpdateTracksTask UCT = new UpdateTracksTask(getApplicationContext(),
+			UpdateTracksTask UTT = new UpdateTracksTask(getApplicationContext(),
 					currentTrackingContexts);
-			UCT.execute(new LocationDTO(location));
+			UTT.execute(new LocationDTO(location));
 		//}
 	}
 	@Override
