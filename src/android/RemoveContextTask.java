@@ -74,6 +74,8 @@ public class RemoveContextTask extends AsyncTask<JSONArray, Void, Boolean> {
 		if(success){
 			Intent intent = new Intent(context, GpsTrackService.class);
 			context.startService(intent);
+
+			callbackContext.success();
 		}
 	}
 }

@@ -74,6 +74,8 @@ public class GpsTrackService extends Service implements LocationListener{
     @SuppressWarnings("unchecked")
     public int onStartCommand(Intent intent, int flags, int startId){
 
+		Log.d(TAG, "Service called!");
+
 		//As we return START_STICKY, even if the service is killed or
 		//the application is closed it will restart when possible.
 		//As all the tracking contexts are persisted, the states are
@@ -137,9 +139,9 @@ public class GpsTrackService extends Service implements LocationListener{
 
 		//if(isBetterLocation(location, bestLocation)){
 			bestLocation = location;
-			UpdateTracksTask UTT = new UpdateTracksTask(getApplicationContext(),
+			UpdateTracksTask UCT = new UpdateTracksTask(getApplicationContext(),
 					currentTrackingContexts);
-			UTT.execute(new LocationDTO(location));
+			UCT.execute(new LocationDTO(location));
 		//}
 	}
 	@Override

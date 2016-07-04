@@ -11,11 +11,15 @@ BackgroundTracker.prototype.startTracking = function(parameters, callback, fallb
 	var argArray = [parameters];
 
 	function win(winParam){
-		callback(winParam);
+		if(isFunc(callback)){
+			callback(winParam);
+		}
 	}
 
 	function fail(error){
-		fallback(error);
+		if(isFunc(fallback)){
+			fallback(error);
+		}
 	}
 
 	exec(win, fail, service, action, argArray);
@@ -27,11 +31,15 @@ BackgroundTracker.prototype.stopTracking = function(trackId, callback, fallback)
 	var argArray = [trackId];
 
 	function win(winParam){
-		callback(winParam);
+		if(isFunc(callback)){
+			callback(winParam);
+		}
 	}
 
 	function fail(error){
-		fallback(error);
+		if(isFunc(fallback)){
+			fallback(error);
+		}
 	}
 	
 	exec(win, fail, service, action, argArray);
@@ -43,11 +51,15 @@ BackgroundTracker.prototype.getStoredTrack = function(trackId, callback, fallbac
 	var argArray = [trackId];
 
 	function win(winParam){
-		callback(winParam);
+		if(isFunc(callback)){
+			callback(winParam);
+		}
 	}
 
 	function fail(error){
-		fallback(error);
+		if(isFunc(fallback)){
+			fallback(error);
+		}
 	}
 	
 	exec(win, fail, service, action, argArray);
@@ -59,11 +71,15 @@ BackgroundTracker.prototype.removeStoredTrack = function(trackId, callback, fall
 	var argArray = [trackId];
 
 	function win(winParam){
-		callback(winParam);
+		if(isFunc(callback)){
+			callback(winParam);
+		}
 	}
 
 	function fail(error){
-		fallback(error);
+		if(isFunc(fallback)){
+			fallback(error);
+		}
 	}
 	
 	exec(win, fail, service, action, argArray);
@@ -75,11 +91,15 @@ BackgroundTracker.prototype.removeAllStoredTracks = function(callback, fallback)
 	var argArray = [];
 
 	function win(winParam){
-		callback(winParam);
+		if(isFunc(callback)){
+			callback(winParam);
+		}
 	}
 
 	function fail(error){
-		fallback(error);
+		if(isFunc(fallback)){
+			fallback(error);
+		}
 	}
 	
 	exec(win, fail, service, action, argArray);

@@ -51,11 +51,6 @@ public class RemoveAllTracksTask extends AsyncTask<Void, Void, Boolean> {
 				context.deleteFile(track.getTrackId());
 			}
 
-			//Delete contexts file.
-
-			context.deleteFile(TRACK_CONTEXTS_FILE);
-			callbackContext.success(currentTracks.toString());
-
 			return true;
 		}catch(IOException ioe){
 			callbackContext.error("Error removing tracks: " + ioe.toString());
@@ -67,9 +62,7 @@ public class RemoveAllTracksTask extends AsyncTask<Void, Void, Boolean> {
 	protected void onPostExecute(Boolean success) {
 		super.onPostExecute(success);
 		if(success){
-			Intent intent = new Intent(context,
-					GpsTrackService.class);
-			context.startService(intent);
+			callbackContext.success("OK");
 		}
 	}
 }

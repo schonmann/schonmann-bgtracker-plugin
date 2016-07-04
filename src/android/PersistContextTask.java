@@ -59,8 +59,6 @@ public class PersistContextTask extends AsyncTask<JSONArray, Void, Boolean> {
 
 			Log.d(TAG, "Track '" + track_id + "' persisted. Service running in background!");
 
-			callbackContext.success();
-
 			return true;
 
 		}catch(Exception e){
@@ -81,6 +79,7 @@ public class PersistContextTask extends AsyncTask<JSONArray, Void, Boolean> {
 			Intent intent = new Intent(context,
 					GpsTrackService.class);
 			context.startService(intent);
+			callbackContext.success();
 		}
 	}
 }
