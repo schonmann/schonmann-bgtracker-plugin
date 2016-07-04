@@ -30,16 +30,16 @@
         <source-file src="src/android/BackgroundTrackerPlugin.java" target-dir="src/schonmann/bgtracker/" />
         <source-file src="src/android/Callback.java"                target-dir="src/schonmann/bgtracker/" />
         <source-file src="src/android/Fallback.java"                target-dir="src/schonmann/bgtracker/" />
-        <soruce-file src="src/android/GetTrackTask.java"			target-dir="src/schonmann/bgtracker/" />
+        <source-file src="src/android/GetTrackTask.java"			target-dir="src/schonmann/bgtracker/" />
         <source-file src="src/android/GpsTrackService.java" 	    target-dir="src/schonmann/bgtracker/" />
-        <soruce-file src="src/android/LocationDTO.java"             target-dir="src/schonmann/bgtracker/" />
-        <soruce-file src="src/android/PersistContextTask.java"      target-dir="src/schonmann/bgtracker/" />
-        <soruce-file src="src/android/RemoveContextTask.java"       target-dir="src/schonmann/bgtracker/" />
+        <source-file src="src/android/LocationDTO.java"             target-dir="src/schonmann/bgtracker/" />
+        <source-file src="src/android/PersistContextTask.java"      target-dir="src/schonmann/bgtracker/" />
+        <source-file src="src/android/ReadContextTask.java"       target-dir="src/schonmann/bgtracker/" />
 		<source-file src="src/android/ReadCurrentContextsTask.java" target-dir="src/schonmann/bgtracker/" />
-        <soruce-file src="src/android/RemoveAllTracksTask.java"     target-dir="src/schonmann/bgtracker/" />
-        <source-file src="src/android/RemoveContextTask.java" 	    target-dir="src/schonmann/bgtracker/" />
+        <source-file src="src/android/RemoveAllTracksTask.java"     target-dir="src/schonmann/bgtracker/" />
+        <source-file src="src/android/RemoveContextTask.java"       target-dir="src/schonmann/bgtracker/" />
 		<source-file src="src/android/RemoveTrackTask.java"			target-dir="src/schonmann/bgtracker/" />
-		<soruce-file src="src/android/TrackTag.java"                target-dir="src/schonmann/bgtracker/" />
+		<source-file src="src/android/TrackTag.java"                target-dir="src/schonmann/bgtracker/" />
         <source-file src="src/android/UpdateTracksTask.java"        target-dir="src/schonmann/bgtracker/" />
 		
     </platform>
