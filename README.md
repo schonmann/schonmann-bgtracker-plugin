@@ -12,7 +12,7 @@ This plugin will start a background service to track gps positions even if appli
 
 Starting a track context:
 ------
-    BackgroundTracker.startTrack(options, 
+    BackgroundTracker.startTracking(options, 
         callback, 
         fallback);
         
@@ -20,7 +20,7 @@ Starting a track context:
 
 Stop to track:
 ------
-    BackgroundTracker.stopTrack(track_id);
+    BackgroundTracker.stopTracking(track_id);
         
 * New locations will not be written to that track until it starts again. It will not delete the track file.
 
