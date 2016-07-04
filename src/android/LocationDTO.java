@@ -13,7 +13,7 @@ public class LocationDTO {
     private float speed;
 
     public String toString(){
-        return latitude + " " + longitude + " " + timestamp + " " + speed;
+        return latitude + ";" + longitude + ";" + timestamp + ";" + speed;
     }
 
     public LocationDTO(Location location){
