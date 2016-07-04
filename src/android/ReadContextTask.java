@@ -43,7 +43,7 @@ public class ReadContextTask extends AsyncTask<JSONArray, Void, Boolean>{
 
 			while(scanner.hasNextLine()){
 				String locationToStr = scanner.nextLine();
-				String[] values = locationToStr.split(" ");
+				String[] values = locationToStr.split(";");
 
 				JSONObject locationJson = new JSONObject();
 
