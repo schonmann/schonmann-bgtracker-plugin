@@ -47,10 +47,10 @@ public class GetTrackTask extends AsyncTask<JSONArray, Void, Boolean>{
 
 				JSONObject locationJson = new JSONObject();
 
-				locationJson.put("latitude",  values[0]);
-				locationJson.put("longitude", values[1]);
-				locationJson.put("timestamp", values[2]);
-				locationJson.put("speed",	  values[3]);
+				locationJson.put("latitude",  Double.valueOf(values[0]).doubleValue());
+				locationJson.put("longitude", Double.valueOf(values[1]).doubleValue());
+				locationJson.put("timestamp", Double.valueOf(values[2]).doubleValue());
+				locationJson.put("speed",	  Float.valueOf(values[3]).floatValue());
 
 				jsonArray.put(locationJson);
 			}
