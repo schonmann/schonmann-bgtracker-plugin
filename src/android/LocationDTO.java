@@ -9,7 +9,7 @@ public class LocationDTO {
 
     private double latitude;
     private double longitude;
-    private double timestamp;
+    private long timestamp;
     private float speed;
 
     public String toString(){
