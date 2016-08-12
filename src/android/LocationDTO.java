@@ -20,7 +20,7 @@ public class LocationDTO {
         latitude = location.getLatitude();
         longitude = location.getLongitude();
         timestamp = location.getTime();
-        speed = location.getTime();
+        speed = location.getSpeed();
     }
 
     public double getLatitude() {
