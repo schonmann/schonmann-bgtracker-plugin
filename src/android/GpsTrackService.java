@@ -22,7 +22,8 @@ public class GpsTrackService extends Service implements LocationListener{
     private Location bestLocation = null;
 
     //Space and time recording intervals.
-    private static final float SPACE_INTERVAL = 0; //Space in meters.
+
+    private static final float SPACE_INTERVAL = 100; //Space in meters.
     private static final int TIME_INTERVAL = 0; //Time in millis
 
     private LocationManager locationManager;
@@ -42,6 +43,7 @@ public class GpsTrackService extends Service implements LocationListener{
     private void gotPersistedContexts(List<TrackTag> persistedContexts){
 
 		//If list is empty, no work to do at all.
+        
         if(persistedContexts.isEmpty()){
             stopSelf();
 			return;
@@ -137,12 +139,12 @@ public class GpsTrackService extends Service implements LocationListener{
 
 	public void onLocationChanged(final Location location) {
 
-		//if(isBetterLocation(location, bestLocation)){
+		if(isBetterLocation(location, bestLocation)){
 			bestLocation = location;
 			UpdateTracksTask UCT = new UpdateTracksTask(getApplicationContext(),
 					currentTrackingContexts);
 			UCT.execute(new LocationDTO(location));
-		//}
+		}
 	}
 	@Override
 	public void onProviderDisabled(String provider) {
