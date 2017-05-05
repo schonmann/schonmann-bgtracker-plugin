@@ -31,30 +31,25 @@ public class BackgroundTrackerPlugin extends CordovaPlugin{
 
     public boolean execute(final String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
-        final Context context = this.cordova.getActivity().getApplicationContext();
-
-        if(START_TRACKING.equals(action)){
-
+		final Context context = this.cordova.getActivity().getApplicationContext();
+		
+		if(START_TRACKING.equals(action)){
 			PersistContextTask persistTask = new PersistContextTask(context, callbackContext);
 			persistTask.execute(args);
-        } else if(STOP_TRACKING.equals(action)){
-
-            RemoveContextTask removeTask = new RemoveContextTask(context, callbackContext);
+		} else if(STOP_TRACKING.equals(action)){
+			RemoveContextTask removeTask = new RemoveContextTask(context, callbackContext);
 			removeTask.execute(args);
-        } else if(GET_STORED_TRACK.equals(action)){
-
+		} else if(GET_STORED_TRACK.equals(action)){
 			GetTrackTask readTask = new GetTrackTask(context, callbackContext);
 			readTask.execute(args);
 		} else if(REMOVE_STORED_TRACK.equals(action)){
-
 			RemoveTrackTask removeTask = new RemoveTrackTask(context, callbackContext);
 			removeTask.execute(args);
 		} else if(REMOVE_ALL_STORED_TRACKS.equals(action)){
-
 			RemoveAllTracksTask removeTask = new RemoveAllTracksTask(context, callbackContext);
 			removeTask.execute();
 		}
-
+		
         return true;
     }
 }
