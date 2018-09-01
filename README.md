@@ -2,7 +2,7 @@
 
 Contributors
 ------------
-[@schonmann](https://github.com/schonmann/) [@PMoneda] (https://github.com/PMoneda/)
+[@schonmann](https://github.com/schonmann/) [@PMoneda](https://github.com/PMoneda/)
 
 Background Tracking plugin for Cordova
 ==========================
